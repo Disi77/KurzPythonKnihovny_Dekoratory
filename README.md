@@ -1,6 +1,7 @@
 # Homework DEKORATORY
 
 Kurz PyLadies Ostrava **Python a jeho knihovny podzim 2020**
+
 <https://naucse.python.cz/2020/pyladies-ostrava-podzim-pokrocili/>
 
 ## Zadání úkolu:
