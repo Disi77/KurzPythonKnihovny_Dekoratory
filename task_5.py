@@ -6,11 +6,11 @@
 import my_decorator
 
 
-@my_decorator.bez_printu
-def funkce():
-    print("Něco tisknu uvnitř funkce")
-    return "A něco jiného vracím"
+@my_decorator.without_print
+def dummy_function():
+    print("I print something inside the function")
+    return "I return some value from the function"
 
 
 if __name__ == "__main__":
-    print(funkce())
+    print(dummy_function())

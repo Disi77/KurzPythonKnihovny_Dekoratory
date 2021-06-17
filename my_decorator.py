@@ -10,101 +10,104 @@
 # tento výpis se neukáže, ale funkce bude dále normálně fungovat a vracet výsledky.
 
 
-def debug_vypis(func):
-    """Úkol 1 a 2
-       Dekorátor vypíše jednoduchou zprávu, která obsahuje název volané funkce,
-       vložené hodnoty pozičních argumentů, pojmenovaných argumentů a
-       nakonec čas, který funkce spotřebovala.
+def debug_message(func):
+    """Task 1 a 2
+       Decorator displays simple message with:
+                  * function's name
+                  * positional arguments
+                  * keyword arguments
+                  * elapsed time
     """
     import functools
     import time
 
     @functools.wraps(func)
-    def nahradni_funkce(*args, **kwargs):
+    def inner(*args, **kwargs):
         start = time.time()
-        vysledek = func(*args, **kwargs)
+        result = func(*args, **kwargs)
         end = time.time() - start
 
-        sablona = f'''
+        template = f'''
         ============ DEBUG START ============
-        Název volané funkce: {func.__name__}
-        Poziční argumenty: {args}
-        Pojmenované argumenty: {kwargs}
-        Čas trvání funkce: {end}
+        Function's name: {func.__name__}
+        Positional arguments: {args}
+        Keyword arguments: {kwargs}
+        Elapsed time: {end}
         ============ DEBUG END ==============
         '''
 
-        print(sablona)
-        return vysledek
+        print(template)
+        return result
 
-    return nahradni_funkce
+    return inner
 
 
-def pocet_spusteni_funkce(func):
-    """Úkol 3
-       Dekorátor vytvoří soubor se statistikou,
-       kolikrát byla funkce spuštěna."""
+def function_runned_count(func):
+    """Task 3
+       Decorator creates file with statistics -
+       how many times was the function runned.
+    """
     import functools
     import json
 
     @functools.wraps(func)
-    def nahradni_funkce(*args, **kwargs):
-        soubor = 'statistika.json'
+    def inner(*args, **kwargs):
+        file = 'statistics.json'
         try:
-            with open(soubor, mode='r') as s:
-                databaze = json.load(s)
+            with open(file, mode='r') as s:
+                db = json.load(s)
         except IOError:
-            databaze = {}
+            db = {}
 
-        funkce = func.__name__
-        if funkce in databaze:
-            databaze[funkce] += 1
+        funcion_name = func.__name__
+        if funcion_name in db:
+            db[funcion_name] += 1
         else:
-            databaze[funkce] = 1
+            db[funcion_name] = 1
 
-        with open(soubor, mode='w') as s:
-            s.write(json.dumps(databaze, ensure_ascii=False, indent=2))
+        with open(file, mode='w') as s:
+            s.write(json.dumps(db, ensure_ascii=False, indent=2))
 
         return func(*args, **kwargs)
 
-    return nahradni_funkce
+    return inner
 
 
 def seach_python_error(func):
-    """Úkol 4
-       Pokud v programu dojde k chybě, dekorátor otevře prohlížeč
-       a začne hledat chybu. Hledané spojení je "Python" +
-       název chyby.
+    """Task 4
+       If an error occurs in the program, the decorator opens the browser
+       and starts looking for an error.
+       The searched value is "Python" + Error name.
        """
     import functools
     import webbrowser
 
     @functools.wraps(func)
-    def nahradni_funkce(*args, **kwargs):
+    def inner(*args, **kwargs):
         try:
             return func(*args, **kwargs)
         except Exception as ex:
-            vyjimka = type(ex).__name__
-            url = 'https://www.google.com/search?q=Python+' + vyjimka
+            exception_name = type(ex).__name__
+            url = 'https://www.google.com/search?q=Python+' + exception_name
             webbrowser.register('chrome',
                                 None,
                                 webbrowser.BackgroundBrowser("C://Program Files (x86)//Google//Chrome//Application//chrome.exe"))
             webbrowser.get('chrome').open(url)
 
-    return nahradni_funkce
+    return inner
 
 
-def bez_printu(func):
-    """Úkol 5
-       Dekorátor, který zakazuje printy uvnitř funkce.
+def without_print(func):
+    """Task 5
+       Decorator disables the "print" function inside functions.
        """
     import functools
     import sys
 
     @functools.wraps(func)
-    def nahradni_funkce(*args, **kwargs):
+    def inner(*args, **kwargs):
         sys.stdout = None
-        vysledek = func(*args, **kwargs)
+        result = func(*args, **kwargs)
         sys.stdout = sys.__stdout__
-        return vysledek
-    return nahradni_funkce
+        return result
+    return inner

@@ -5,7 +5,7 @@ import my_decorator
 from random import randrange
 
 
-@my_decorator.pocet_spusteni_funkce
+@my_decorator.function_runned_count
 def fizz_buzz(cislo):
     """Funkce vrací řetězec, pokud číslo odpovídá pravidlu,
        jinak vrací zadané číslo:
@@ -21,7 +21,7 @@ def fizz_buzz(cislo):
     return cislo
 
 
-@my_decorator.pocet_spusteni_funkce
+@my_decorator.function_runned_count
 def cisla_sportka():
     """Funkce vrátí seznam čísel pro Sportku"""
     cisla = []
