@@ -1,17 +1,17 @@
-# Homework DEKORATORY
+# Homework DECORATORS
 
-Kurz PyLadies Ostrava **Python a jeho knihovny podzim 2020**
+Course PyLadies Ostrava **Python and its libraries autumn 2020**
 
 <https://naucse.python.cz/2020/pyladies-ostrava-podzim-pokrocili/>
 
-## Zadání úkolu:
+## Tasks:
 
-1. Napiš dekorátor, který dekorovanou funkci doplní o výpis názvu funkce a argumentů — vhodné například pro ladění programu, abychom věděli, kdy a jak se funkce zavolá.
-2. Napiš dekorátor, který změří čas, po který funkce pracuje a výsledek vypíše — také vhodné # pro ladění, pokud nám přijde, že nějaká funkce trvá moc dlouho a chceme si to ověřit. Možno nakombinovat s prvním dekorátorem.
-3. Napiš libovolný vlastní dekorátor.
-4. Pokud ve funkci dojde k výjimce, dodá odkaz na google, který tu konkrétní chybu vyhledá.
-5. Napiš dekorátor, který zakáže printy. Pokude bude dekorovaná funkce něco vypisovat printem, tento výpis se neukáže, ale funkce bude dále normálně fungovat a vracet výsledky.
+1. Write a decorator that adds a list of the function name and arguments to the function - it is suitable for debugging .
+2. Write a decorator that measures how long function works and prints the result. Can be combined with first decorator.
+3. Write any custom decorator.
+4. If an exception occurs in the function, the decorator provide a link to google and start searching the specific error.
+5. Write a decorator who forbids function "print".
 
-## Řešení:
-* Soubor 'my_decorator.py' obsahuje samotné dekorátory.
-* Ostatní soubory ukazují jednoduché příklady použití dekorátoru.
+## Solution:
+* File 'my_decorator.py' contains decorators.
+* Files task*.py contains simple examples of decorator's usage.
